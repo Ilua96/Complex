@@ -2,7 +2,6 @@
 #include <math.h>
 
 
-
 namespace ComplexLib
 {
 	//Complex
@@ -32,7 +31,7 @@ namespace ComplexLib
 	}
 
 	complex complex::operator/(const complex& src){
-		return complex(x / src.x - y / src.y, x / src.y + y / src.x);
+		return complex((x * src.x + y * src.y) / (src.x * src.x + src.y * src.y), (x * src.x - y * src.y) / (src.x * src.x + src.y * src.y));
 	}
 
 	complex complex::operator/(const float n){
