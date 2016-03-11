@@ -48,7 +48,7 @@ namespace ComplexLib
 
 	bool complex::operator==(const complex& src){
 		float eps = 0.000001f;
-		if (abs(x - src.x) < eps && abs(y - src.y) < eps)
+		if ((*this - src).abs() < eps)
 			return true;
 		else
 			return false;
@@ -56,9 +56,13 @@ namespace ComplexLib
 	
 	bool complex::operator==(const float n){
 		float eps = 0.000001f;
-		if (abs(x - n) < eps && y < eps)
+		if ((*this - n).abs() < eps)
 			return true;
 		else
 			return false;
+	}
+
+	float complex::abs(){
+		return sqrt(x * x + y * y);
 	}
 }
