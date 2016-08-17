@@ -107,6 +107,19 @@ TEST(equality_complex, equality_complex){
 	EXPECT_TRUE(test3);
 }
 
+TEST(equality_complex, equality_false_complex) {
+	ComplexLib::complex test1(1.0, 2.0);
+	ComplexLib::complex test2(2.0, 2.0);
+	complex <double> c1(1.0, 2.0);
+	complex <double> c2(2.0, 2.0);
+	bool test3;
+	if (test1 == test2 && c1 == c2)
+		test3 = true;
+	else
+		test3 = false;
+	EXPECT_FALSE(test3);
+}
+
 TEST(equality_complex, equality_double){
 	ComplexLib::complex test1(1.0, 0.0);
 	complex <double> c1(1.0, 0.0);
@@ -116,6 +129,17 @@ TEST(equality_complex, equality_double){
 	else
 		test3 = false;
 	EXPECT_TRUE(test3);
+}
+
+TEST(equality_complex, equality_false_double) {
+	ComplexLib::complex test1(1.0, 0.0);
+	complex <double> c1(1.0, 0.0);
+	bool test3;
+	if (test1 == 2.0 && c1 == 2.0)
+		test3 = true;
+	else
+		test3 = false;
+	EXPECT_FALSE(test3);
 }
 
 TEST(abs_complex, abs){

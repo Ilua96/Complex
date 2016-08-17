@@ -3,6 +3,7 @@
 #include <complex>
 #include <conio.h>
 
+
 using namespace std;
 
 int TestValues(ComplexLib::ComplexPolar c, double r, double fi){
@@ -25,6 +26,11 @@ TEST(init_ComplexPolar, init_zero){
 TEST(to_complex, to_complex){
 	ComplexLib::ComplexPolar test(ComplexLib::complex(3.0, 4.0));
 	TestValues(test, abs(complex <double>(3.0, 4.0)), arg(complex <double>(3.0, 4.0)));
+}
+
+TEST(to_complex, to_complex_zero) {
+	ComplexLib::ComplexPolar test(ComplexLib::complex(0.0, 0.0));
+	TestValues(test, abs(complex <double>(0.0, 0.0)), arg(complex <double>(0.0, 0.0)));
 }
 
 TEST(plus_ComplexPolar, plus_ComplexPolar){
@@ -76,9 +82,16 @@ TEST(assignment_ComplexPolar, assignment_ComplexPolar){
 	TestValues(test1, abs(complex <double>(3.0, 4.0)), arg(complex <double>(3.0, 4.0)));
 }
 
+TEST(assignment_ComplexPolar, assignment_double) {
+	ComplexLib::ComplexPolar test1;
+	ComplexLib::ComplexPolar test2(ComplexLib::complex(3.0, 4.0));
+	test1 = 3.0;
+	TestValues(test1, abs(complex <double>(3.0, 0.0)), arg(complex <double>(3.0, 0.0)));
+}
+
 TEST(equality_ComplexPolar, equality_ComplexPolar){
-	ComplexLib::complex test1(ComplexLib::complex(3.0, 4.0));
-	ComplexLib::complex test2(ComplexLib::complex(3.0, 4.0));
+	ComplexLib::ComplexPolar test1(ComplexLib::complex(3.0, 4.0));
+	ComplexLib::ComplexPolar test2(ComplexLib::complex(3.0, 4.0));
 	complex <double> c1(abs(complex <double>(3.0, 4.0)), arg(complex <double>(3.0, 4.0)));
 	complex <double> c2(abs(complex <double>(3.0, 4.0)), arg(complex <double>(3.0, 4.0)));
 	bool test3;
@@ -89,15 +102,39 @@ TEST(equality_ComplexPolar, equality_ComplexPolar){
 	EXPECT_TRUE(test3);
 }
 
+TEST(equality_ComplexPolar, equality_false_ComplexPolar) {
+	ComplexLib::ComplexPolar test1(ComplexLib::complex(3.0, 4.0));
+	ComplexLib::ComplexPolar test2(ComplexLib::complex(4.0, 4.0));
+	complex <double> c1(abs(complex <double>(3.0, 4.0)), arg(complex <double>(3.0, 4.0)));
+	complex <double> c2(abs(complex <double>(4.0, 4.0)), arg(complex <double>(4.0, 4.0)));
+	bool test3;
+	if (test1 == test2 && c1 == c2)
+		test3 = true;
+	else
+		test3 = false;
+	EXPECT_FALSE(test3);
+}
+
 TEST(equality_ComplexPolar, equality_double){
-	ComplexLib::complex test1(ComplexLib::complex(3.0, 0.0));
+	ComplexLib::ComplexPolar test1(ComplexLib::complex(3.0, 0.0));
 	complex <double> c1(abs(complex <double>(3.0, 0.0)), arg(complex <double>(3.0, 0.0)));
 	bool test3;
-	if (test1 == 3.0 && c1 == 3.0)
+	if (test1 == ComplexLib::ComplexPolar(ComplexLib::complex(3.0, 0.0)).abs() && c1 == 3.0)
 		test3 = true;
 	else
 		test3 = false;
 	EXPECT_TRUE(test3);
+}
+
+TEST(equality_ComplexPolar, equality_false_double) {
+	ComplexLib::ComplexPolar test1(ComplexLib::complex(3.0, 0.0));
+	complex <double> c1(abs(complex <double>(3.0, 0.0)), arg(complex <double>(3.0, 0.0)));
+	bool test3;
+	if (test1 == ComplexLib::ComplexPolar(ComplexLib::complex(4.0, 0.0)).abs() && c1 == 4.0)
+		test3 = true;
+	else
+		test3 = false;
+	EXPECT_FALSE(test3);
 }
 
 TEST(abs_ComplexPolar, abs){
