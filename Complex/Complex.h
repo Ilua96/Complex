@@ -31,15 +31,23 @@ namespace ComplexLib
 	class ComplexPolar : public complex
 	{
 	public:
-		ComplexPolar() : r(0.0), fi(0.0) {};
-		ComplexPolar(double r, double fi) : r(r), fi(fi) {};
-		ComplexPolar(complex src){
+		ComplexPolar() : r(0.0), fi(0.0) {
+			x = 0.0;
+			y = 0.0;
+		};
+		ComplexPolar(double r, double fi) : r(r), fi(fi) {
+			x = ToComplex(*this).x;
+			y = ToComplex(*this).y;
+		};
+		ComplexPolar(complex src) {
 			if (src == 0){
 				r = 0.0;
 				fi = 0.0;
 				return;
 			}
 			r = src.abs();
+			x = src.x;
+			y = src.y;
 			fi = atan2(src.y, src.x);
 		};
 		~ComplexPolar(){};

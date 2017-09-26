@@ -81,35 +81,35 @@ namespace ComplexLib
 	//ComplexPolar
 
 	ComplexPolar ComplexPolar::operator+(const ComplexPolar& src){
-		return ComplexPolar(ToComplex(*this) + ToComplex(src));
+		return ComplexPolar(complex(x, y) + ToComplex(src));
 	}
 
 	ComplexPolar ComplexPolar::operator+(const double n){
-		return ComplexPolar(ToComplex(*this) + n);
+		return ComplexPolar(complex(x, y) + n);
 	}
 
 	ComplexPolar ComplexPolar::operator-(const ComplexPolar& src){
-		return ComplexPolar(ToComplex(*this) - ToComplex(src));
+		return ComplexPolar(complex(x, y) - ToComplex(src));
 	}
 
 	ComplexPolar ComplexPolar::operator-(const double n){
-		return ComplexPolar(ToComplex(*this) - n);
+		return ComplexPolar(complex(x, y) - n);
 	}
 
 	ComplexPolar ComplexPolar::operator*(const ComplexPolar& src){
-		return ComplexPolar(ToComplex(*this) * ToComplex(src));
+		return ComplexPolar(complex(x, y) * ToComplex(src));
 	}
 
 	ComplexPolar ComplexPolar::operator*(const double n){
-		return ComplexPolar(ToComplex(*this) * n);
+		return ComplexPolar(complex(x, y) * n);
 	}
 
 	ComplexPolar ComplexPolar::operator/(const ComplexPolar& src){
-		return ComplexPolar(ToComplex(*this) / ToComplex(src));
+		return ComplexPolar(complex(x, y) / ToComplex(src));
 	}
 
 	ComplexPolar ComplexPolar::operator/(const double n){
-		return ComplexPolar(ToComplex(*this) / n);
+		return ComplexPolar(complex(x, y) / n);
 	}
 
 	ComplexPolar ComplexPolar::operator=(const ComplexPolar& src){
